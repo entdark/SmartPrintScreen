@@ -129,7 +129,7 @@ namespace SmartPrintScreen {
 				f.MouseDown += new System.Windows.Forms.MouseEventHandler(fMouseDown_Click);
 				f.MouseUp += new System.Windows.Forms.MouseEventHandler(fMouseUp_Click);
 				f.MouseMove += new System.Windows.Forms.MouseEventHandler(fMouseMove_MouseClick);
-				f.KeyPress += new System.Windows.Forms.KeyPressEventHandler(fKeyPress_Press);
+				f.KeyDown += new System.Windows.Forms.KeyEventHandler(fKeyDown_KeyPress);
 				f.ShowInTaskbar = false;
 				f.ShowIcon = false;
 				f.Show();
@@ -228,7 +228,8 @@ namespace SmartPrintScreen {
 			ReleaseDC(IntPtr.Zero, desktopPtr);
 		}
 
-		private void fKeyPress_Press(object sender, KeyPressEventArgs e) {
+		private void fKeyDown_KeyPress(object sender, KeyEventArgs e) {
+			e.Handled = true;
 			cancelCapture = true;
 			capturingCut = false;
 		}

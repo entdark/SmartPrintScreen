@@ -180,9 +180,9 @@
 			this.listBoxShotURLs.Name = "listBoxShotURLs";
 			this.listBoxShotURLs.Size = new System.Drawing.Size(192, 82);
 			this.listBoxShotURLs.TabIndex = 7;
+			this.listBoxShotURLs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxShotURLs_KeyDown);
 			this.listBoxShotURLs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxShotURLs_MouseDoubleClick);
 			this.listBoxShotURLs.MouseUp += new System.Windows.Forms.MouseEventHandler(this.listBoxShotURLs_MouseClick);
-			this.listBoxShotURLs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxShotURLs_KeyDown);
 			// 
 			// contextMenuStripShotURLs
 			// 
