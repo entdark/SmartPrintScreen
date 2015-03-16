@@ -35,6 +35,8 @@
 			this.radioButtonClipboardScreenshot = new System.Windows.Forms.RadioButton();
 			this.notifyIconTray = new System.Windows.Forms.NotifyIcon(this.components);
 			this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.openSmartPrintScreenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBoxNotifications = new System.Windows.Forms.CheckBox();
 			this.listBoxShotURLs = new System.Windows.Forms.ListBox();
@@ -149,14 +151,28 @@
 			// contextMenuStripTray
 			// 
 			this.contextMenuStripTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openSmartPrintScreenToolStripMenuItem,
+            this.toolStripSeparator1,
             this.exitToolStripMenuItem});
 			this.contextMenuStripTray.Name = "contextMenuStripTray";
-			this.contextMenuStripTray.Size = new System.Drawing.Size(93, 26);
+			this.contextMenuStripTray.Size = new System.Drawing.Size(198, 76);
+			// 
+			// openSmartPrintScreenToolStripMenuItem
+			// 
+			this.openSmartPrintScreenToolStripMenuItem.Name = "openSmartPrintScreenToolStripMenuItem";
+			this.openSmartPrintScreenToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.openSmartPrintScreenToolStripMenuItem.Text = "Open SmartPrintScreen";
+			this.openSmartPrintScreenToolStripMenuItem.Click += new System.EventHandler(this.openSmartPrintScreenToolStripMenuItem_Click);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(194, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -191,7 +207,7 @@
             this.copyToolStripMenuItem,
             this.clearListToolStripMenuItem});
 			this.contextMenuStripShotURLs.Name = "contextMenuStripShotURLs";
-			this.contextMenuStripShotURLs.Size = new System.Drawing.Size(162, 92);
+			this.contextMenuStripShotURLs.Size = new System.Drawing.Size(162, 70);
 			// 
 			// openInBrowserToolStripMenuItem
 			// 
@@ -280,6 +296,8 @@
 		private System.Windows.Forms.CheckBox checkBoxUpload;
 		private System.Windows.Forms.ToolStripMenuItem openInBrowserToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clearListToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem openSmartPrintScreenToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 	}
 }
 

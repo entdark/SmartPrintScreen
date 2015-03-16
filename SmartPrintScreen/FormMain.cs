@@ -402,5 +402,9 @@ namespace SmartPrintScreen {
 			Clipboard.SetText(url);
 			ShowBalloonTip("URL copied", String.Format("{0} copied to clipboard", url));
 		}
+
+		private void openSmartPrintScreenToolStripMenuItem_Click(object sender, EventArgs e) {
+			this.Show();
+		}
 	}
 }
