@@ -374,11 +374,7 @@ namespace SmartPrintScreen {
 		}
 
 		private void copyToolStripMenuItem_Click(object sender, EventArgs e) {
-			if (listBoxShotURLs.SelectedIndex < 0)
-				return;
-			string url = listBoxShotURLs.Items[listBoxShotURLs.SelectedIndex].ToString();
-			Clipboard.SetText(url);
-			ShowBalloonTip("URL copied", String.Format("{0} copied to clipboard", url));
+			CopyURL();
 		}
 
 		private void openInBrowserToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -394,6 +390,23 @@ namespace SmartPrintScreen {
 
 		private void clearListToolStripMenuItem_Click(object sender, EventArgs e) {
 			listBoxShotURLs.Items.Clear();
+		}
+
+		private void listBoxShotURLs_KeyDown(object sender, KeyEventArgs e) {
+			if (e.Control && e.KeyCode == Keys.C) {
+//			if ((e.KeyChar == (char)Keys.LControlKey || e.KeyChar == (char)Keys.RControlKey)
+//				&& e.KeyChar == (char)Keys.C) {
+				e.Handled = true;
+				CopyURL();
+			}
+		}
+
+		private void CopyURL() {
+			if (listBoxShotURLs.SelectedIndex < 0)
+				return;
+			string url = listBoxShotURLs.Items[listBoxShotURLs.SelectedIndex].ToString();
+			Clipboard.SetText(url);
+			ShowBalloonTip("URL copied", String.Format("{0} copied to clipboard", url));
 		}
 	}
 }
