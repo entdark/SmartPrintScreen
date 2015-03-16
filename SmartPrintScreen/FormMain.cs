@@ -89,6 +89,7 @@ namespace SmartPrintScreen {
 
 		private void FormMain_Resize(object sender, EventArgs e) {
 			if (this.WindowState == FormWindowState.Minimized) {
+				this.WindowState = FormWindowState.Normal;
 				this.Hide();
 			}
 		}
