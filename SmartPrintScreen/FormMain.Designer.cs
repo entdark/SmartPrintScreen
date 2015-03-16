@@ -41,8 +41,8 @@
 			this.contextMenuStripShotURLs = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.checkBoxUpload = new System.Windows.Forms.CheckBox();
 			this.clearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.checkBoxUpload = new System.Windows.Forms.CheckBox();
 			this.groupBoxModifiers.SuspendLayout();
 			this.groupBoxClipboard.SuspendLayout();
 			this.contextMenuStripTray.SuspendLayout();
@@ -207,6 +207,13 @@
 			this.copyToolStripMenuItem.Text = "Copy";
 			this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
 			// 
+			// clearListToolStripMenuItem
+			// 
+			this.clearListToolStripMenuItem.Name = "clearListToolStripMenuItem";
+			this.clearListToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+			this.clearListToolStripMenuItem.Text = "Clear list";
+			this.clearListToolStripMenuItem.Click += new System.EventHandler(this.clearListToolStripMenuItem_Click);
+			// 
 			// checkBoxUpload
 			// 
 			this.checkBoxUpload.AutoSize = true;
@@ -218,13 +225,6 @@
 			this.checkBoxUpload.TabIndex = 8;
 			this.checkBoxUpload.Text = "Upload";
 			this.checkBoxUpload.UseVisualStyleBackColor = true;
-			// 
-			// clearListToolStripMenuItem
-			// 
-			this.clearListToolStripMenuItem.Name = "clearListToolStripMenuItem";
-			this.clearListToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-			this.clearListToolStripMenuItem.Text = "Clear List";
-			this.clearListToolStripMenuItem.Click += new System.EventHandler(this.clearListToolStripMenuItem_Click);
 			// 
 			// FormMain
 			// 
