@@ -43,18 +43,12 @@ namespace SmartPrintScreen {
 		public static extern void ReleaseDC(IntPtr hwnd, IntPtr dc);
 		
         GlobalKeyboardHook hookPrintScreen = new GlobalKeyboardHook();
-
-		public FormMain() {
-			this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
-			InitializeComponent();
-			hookPrintScreen.KeyPressed += new EventHandler<SmartPrintScreen.KeyPressedEventArgs>(CaptureMain);
-			hookPrintScreen.HookedKeys.Add(captureKey);
-			this.Hide();
-
-		}
+		
+		private const Keys captureKey = Keys.PrintScreen;
+		private SmartPrintScreen.ModifierKeys modifierKeys = SmartPrintScreen.ModifierKeys.Win;
 		
 		private Point[] cutBorder = new Point[4];
-		public Rectangle cutScreenshot { get; set; }
+		private Rectangle cutScreenshot;
 		private void CutUpdate() {
 			int fpX = cutBorder[0].X, spX = cutBorder[2].X, fpY = cutBorder[0].Y, spY = cutBorder[2].Y;
 			// now let's set the selection rectangle corners
@@ -67,13 +61,18 @@ namespace SmartPrintScreen {
 			} else if (fpX <= spX && fpY >= spY) {
 				cutScreenshot = new Rectangle(fpX, spY, spX-fpX+1, fpY-spY+1);
 			} else {
-				throw new Exception(System.String.Format("something wrong with selection coordinates: {0} and {1}", cutBorder[0], cutBorder[2]));
+				throw new Exception(System.String.Format("Something wrong with selection coordinates: {0} and {1}", cutBorder[0], cutBorder[2]));
 			}
 		}
 		
-		private const Keys captureKey = Keys.PrintScreen;
-		private SmartPrintScreen.ModifierKeys modifierKeys = SmartPrintScreen.ModifierKeys.Win;
-
+		public FormMain() {
+			InitializeComponent();
+			this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
+			hookPrintScreen.KeyPressed += new EventHandler<SmartPrintScreen.KeyPressedEventArgs>(CaptureMain);
+			hookPrintScreen.HookedKeys.Add(captureKey);
+			this.Hide();
+		}
+		
 		private void FormMain_Load(object sender, EventArgs e) {
 			this.Hide();
 		}
@@ -287,11 +286,6 @@ namespace SmartPrintScreen {
 			}
 		}
 		
-		private void notifyIconTrayMenuItem_Click(object sender, EventArgs e) {
-			ClosingFromTray = true;
-			this.Close();
-		}
-
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
 			ClosingFromTray = true;
 			this.Close();
@@ -394,8 +388,6 @@ namespace SmartPrintScreen {
 
 		private void listBoxShotURLs_KeyDown(object sender, KeyEventArgs e) {
 			if (e.Control && e.KeyCode == Keys.C) {
-//			if ((e.KeyChar == (char)Keys.LControlKey || e.KeyChar == (char)Keys.RControlKey)
-//				&& e.KeyChar == (char)Keys.C) {
 				e.Handled = true;
 				CopyURL();
 			}
