@@ -284,7 +284,11 @@ namespace SmartPrintScreen {
 					this.Hide();
 				}
 			} else if (e.Button == MouseButtons.Right) {
-				contextMenuStripTray.Show(Cursor.Position);
+				if (Screen.PrimaryScreen.Bounds.Height - Cursor.Position.Y <= 38) {
+					contextMenuStripTray.Show(Cursor.Position, ToolStripDropDownDirection.AboveRight);
+				} else {
+					contextMenuStripTray.Show(Cursor.Position, ToolStripDropDownDirection.Default);
+				}
 			}
 		}
 		
