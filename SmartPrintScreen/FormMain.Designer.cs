@@ -39,9 +39,10 @@
 			this.checkBoxNotifications = new System.Windows.Forms.CheckBox();
 			this.listBoxShotURLs = new System.Windows.Forms.ListBox();
 			this.contextMenuStripShotURLs = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.openInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBoxUpload = new System.Windows.Forms.CheckBox();
-			this.openInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.clearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.groupBoxModifiers.SuspendLayout();
 			this.groupBoxClipboard.SuspendLayout();
 			this.contextMenuStripTray.SuspendLayout();
@@ -186,9 +187,17 @@
 			// 
 			this.contextMenuStripShotURLs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openInBrowserToolStripMenuItem,
-            this.copyToolStripMenuItem});
+            this.copyToolStripMenuItem,
+            this.clearListToolStripMenuItem});
 			this.contextMenuStripShotURLs.Name = "contextMenuStripShotURLs";
-			this.contextMenuStripShotURLs.Size = new System.Drawing.Size(162, 48);
+			this.contextMenuStripShotURLs.Size = new System.Drawing.Size(162, 92);
+			// 
+			// openInBrowserToolStripMenuItem
+			// 
+			this.openInBrowserToolStripMenuItem.Name = "openInBrowserToolStripMenuItem";
+			this.openInBrowserToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+			this.openInBrowserToolStripMenuItem.Text = "Open in browser";
+			this.openInBrowserToolStripMenuItem.Click += new System.EventHandler(this.openInBrowserToolStripMenuItem_Click);
 			// 
 			// copyToolStripMenuItem
 			// 
@@ -209,12 +218,12 @@
 			this.checkBoxUpload.Text = "Upload";
 			this.checkBoxUpload.UseVisualStyleBackColor = true;
 			// 
-			// openInBrowserToolStripMenuItem
+			// clearListToolStripMenuItem
 			// 
-			this.openInBrowserToolStripMenuItem.Name = "openInBrowserToolStripMenuItem";
-			this.openInBrowserToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-			this.openInBrowserToolStripMenuItem.Text = "Open in browser";
-			this.openInBrowserToolStripMenuItem.Click += new System.EventHandler(this.openInBrowserToolStripMenuItem_Click);
+			this.clearListToolStripMenuItem.Name = "clearListToolStripMenuItem";
+			this.clearListToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+			this.clearListToolStripMenuItem.Text = "Clear List";
+			this.clearListToolStripMenuItem.Click += new System.EventHandler(this.clearListToolStripMenuItem_Click);
 			// 
 			// FormMain
 			// 
@@ -269,6 +278,7 @@
 		private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
 		private System.Windows.Forms.CheckBox checkBoxUpload;
 		private System.Windows.Forms.ToolStripMenuItem openInBrowserToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem clearListToolStripMenuItem;
 	}
 }
 

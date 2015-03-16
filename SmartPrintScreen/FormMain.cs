@@ -353,10 +353,17 @@ namespace SmartPrintScreen {
 		private void listBoxShotURLs_MouseClick(object sender, MouseEventArgs e) {
 			listBoxShotURLs.SelectedIndex = listBoxShotURLs.IndexFromPoint(e.X, e.Y);
 			if (e.Button == MouseButtons.Right) {
-				if (listBoxShotURLs.SelectedIndex < 0) {
-					contextMenuStripShotURLs.Enabled = false;
+				if (listBoxShotURLs.Items.Count <= 0) {
+					clearListToolStripMenuItem.Enabled = false;
 				} else {
-					contextMenuStripShotURLs.Enabled = true;
+					clearListToolStripMenuItem.Enabled = true;
+				}
+				if (listBoxShotURLs.SelectedIndex < 0) {
+					openInBrowserToolStripMenuItem.Enabled = false;
+					copyToolStripMenuItem.Enabled = false;
+				} else {
+					openInBrowserToolStripMenuItem.Enabled = true;
+					copyToolStripMenuItem.Enabled = true;
 				}
 				contextMenuStripShotURLs.Show(Cursor.Position);
 			}
@@ -383,6 +390,10 @@ namespace SmartPrintScreen {
 				return;
 			string url = listBoxShotURLs.Items[listBoxShotURLs.SelectedIndex].ToString();
 			System.Diagnostics.Process.Start(url);
+		}
+
+		private void clearListToolStripMenuItem_Click(object sender, EventArgs e) {
+			listBoxShotURLs.Items.Clear();
 		}
 	}
 }
