@@ -107,31 +107,32 @@ namespace SmartPrintScreen {
 
                     if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (handler != null))
                     {
-                        ModifierKeys mods = 0;
+                        SmartPrintScreen.ModifierKeys mods = 0;
 
-                        if (Keyboard.IsKeyDown(Keys.Control) || Keyboard.IsKeyDown(Keys.ControlKey) ||
-                            Keyboard.IsKeyDown(Keys.LControlKey) || Keyboard.IsKeyDown(Keys.RControlKey))
+                        if (SmartPrintScreen.Keyboard.IsKeyDown(Keys.Control) || SmartPrintScreen.Keyboard.IsKeyDown(Keys.ControlKey) ||
+                            SmartPrintScreen.Keyboard.IsKeyDown(Keys.LControlKey) || SmartPrintScreen.Keyboard.IsKeyDown(Keys.RControlKey))
                         {
-                            mods |= ModifierKeys.Ctrl;
+                            mods |= SmartPrintScreen.ModifierKeys.Ctrl;
                         }
 
-                        if (Keyboard.IsKeyDown(Keys.Shift) || Keyboard.IsKeyDown(Keys.ShiftKey) ||
-                            Keyboard.IsKeyDown(Keys.LShiftKey) || Keyboard.IsKeyDown(Keys.RShiftKey))
+                        if (SmartPrintScreen.Keyboard.IsKeyDown(Keys.Shift) || SmartPrintScreen.Keyboard.IsKeyDown(Keys.ShiftKey) ||
+                            SmartPrintScreen.Keyboard.IsKeyDown(Keys.LShiftKey) || SmartPrintScreen.Keyboard.IsKeyDown(Keys.RShiftKey))
                         {
-                            mods |= ModifierKeys.Shift;
+                            mods |= SmartPrintScreen.ModifierKeys.Shift;
                         }
 
-                        if (Keyboard.IsKeyDown(Keys.LWin) || Keyboard.IsKeyDown(Keys.RWin))
+                        if (SmartPrintScreen.Keyboard.IsKeyDown(Keys.LWin) || SmartPrintScreen.Keyboard.IsKeyDown(Keys.RWin))
                         {
-                            mods |= ModifierKeys.Win;
+                            mods |= SmartPrintScreen.ModifierKeys.Win;
                         }
 
-                        if (Keyboard.IsKeyDown(Keys.Alt))
+                        if (SmartPrintScreen.Keyboard.IsKeyDown(Keys.Alt) || SmartPrintScreen.Keyboard.IsKeyDown(Keys.Menu) ||
+                            SmartPrintScreen.Keyboard.IsKeyDown(Keys.LMenu) || SmartPrintScreen.Keyboard.IsKeyDown(Keys.RMenu))
                         {
-                            mods |= ModifierKeys.Alt;
+                            mods |= SmartPrintScreen.ModifierKeys.Alt;
                         }
 
-                        handler(this, new KeyPressedEventArgs(mods, key));
+                        handler(this, new SmartPrintScreen.KeyPressedEventArgs(mods, key));
                     }
                 }
             }
@@ -231,18 +232,18 @@ namespace SmartPrintScreen {
     /// </summary>
     class KeyPressedEventArgs : EventArgs
     {
-        internal KeyPressedEventArgs(ModifierKeys modifier, Keys key)
+        internal KeyPressedEventArgs(SmartPrintScreen.ModifierKeys modifier, Keys key)
         {
             this.Modifier = modifier;
             this.Key = key;
 
-            this.Ctrl = (modifier & ModifierKeys.Ctrl) != 0;
-            this.Shift = (modifier & ModifierKeys.Shift) != 0;
-            this.Win = (modifier & ModifierKeys.Win) != 0;
-            this.Alt = (modifier & ModifierKeys.Alt) != 0;
+            this.Ctrl = (modifier & SmartPrintScreen.ModifierKeys.Ctrl) != 0;
+            this.Shift = (modifier & SmartPrintScreen.ModifierKeys.Shift) != 0;
+            this.Win = (modifier & SmartPrintScreen.ModifierKeys.Win) != 0;
+            this.Alt = (modifier & SmartPrintScreen.ModifierKeys.Alt) != 0;
         }
 
-        public ModifierKeys Modifier { get; private set; }
+        public SmartPrintScreen.ModifierKeys Modifier { get; private set; }
         public Keys Key { get; private set; }
         public readonly bool Ctrl;
         public readonly bool Shift;

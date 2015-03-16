@@ -42,14 +42,15 @@ namespace SmartPrintScreen {
 		[DllImport("User32.dll")]
 		public static extern void ReleaseDC(IntPtr hwnd, IntPtr dc);
 		
-        GlobalKeyboardHook hookCaptureFull = new GlobalKeyboardHook();
+        GlobalKeyboardHook hookPrintScreen = new GlobalKeyboardHook();
 
 		public FormMain() {
 			this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
 			InitializeComponent();
-			hookCaptureFull.KeyPressed += new EventHandler<KeyPressedEventArgs>(CaptureMain);
-			hookCaptureFull.HookedKeys.Add(captureKey);
+			hookPrintScreen.KeyPressed += new EventHandler<SmartPrintScreen.KeyPressedEventArgs>(CaptureMain);
+			hookPrintScreen.HookedKeys.Add(captureKey);
 			this.Hide();
+
 		}
 		
 		private Point[] cutBorder = new Point[4];
@@ -71,7 +72,7 @@ namespace SmartPrintScreen {
 		}
 		
 		private const Keys captureKey = Keys.PrintScreen;
-		private ModifierKeys modifierKeys = SmartPrintScreen.ModifierKeys.Win;
+		private SmartPrintScreen.ModifierKeys modifierKeys = SmartPrintScreen.ModifierKeys.Win;
 
 		private void FormMain_Load(object sender, EventArgs e) {
 			this.Hide();
@@ -335,7 +336,7 @@ namespace SmartPrintScreen {
 			}
 		}
 
-		//Alt+PrintScreen is used to capture certain window in Windows, let's leave this behavior
+		//Alt+PrintScreen is used to capture focused window in Windows, let's leave this behavior
 /*		private void checkBoxModifierAlt_CheckedChanged(object sender, EventArgs e) {
 			if (checkBoxModifierAlt.Checked) {
 				modifierKeys |= SmartPrintScreen.ModifierKeys.Alt;
