@@ -112,7 +112,7 @@ namespace SmartPrintScreen {
 			RECT focusedWindow;
 			GetWindowRect(GetForegroundWindow(), out focusedWindow);
 			Rectangle r = new Rectangle(focusedWindow.Left, focusedWindow.Top, focusedWindow.Right-focusedWindow.Left, focusedWindow.Bottom-focusedWindow.Top);
-			await CaptureShot(r.Location, r.Size);
+			await CaptureShot(r.Location, r.Size, "Window screenshot");
 		}
 		
 		private bool cancelCapture = false;
@@ -145,11 +145,11 @@ namespace SmartPrintScreen {
 			}
 			capturingCut = false;
 			if (!cancelCapture)
-				await CaptureShot(cutScreenshot.Location, cutScreenshot.Size);
+				await CaptureShot(cutScreenshot.Location, cutScreenshot.Size, "Cut screenshot");
 			cancelCapture = false;
 		}
 		
-		private async Task CaptureShot(Point location, Size size) {
+		private async Task CaptureShot(Point location, Size size, string typeOfShot = "Screenshot") {
 			try {
 				using (Bitmap screenShot = new Bitmap(size.Width, size.Height)) {
 					using (Graphics g = Graphics.FromImage(screenShot)) {
@@ -165,7 +165,7 @@ namespace SmartPrintScreen {
 				
 					if (checkBoxUpload.Checked) {
 						//since uploading takes some time let's just keep Screenshot in the clipboard until we upload
-						ShowBalloonTip("Uploading to imgur.com", "Screenshot copied to clipboard");
+						ShowBalloonTip("Uploading to imgur.com", String.Format("{0} copied to clipboard", typeOfShot));
 						url = await GetUploadedShotURL(screenShot);
 						if (url == "failed") {
 							screenShot.Dispose();
@@ -176,11 +176,11 @@ namespace SmartPrintScreen {
 					screenShot.Dispose();
 					if (radioButtonClipboardURL.Checked && checkBoxUpload.Checked) {
 						Clipboard.SetText(url);
-						ShowBalloonTip("Screenshot uploaded", String.Format("{0} copied to clipboard", url));
+						ShowBalloonTip(String.Format("{0} uploaded", typeOfShot), String.Format("{0} copied to clipboard", url));
 					} else if (checkBoxUpload.Checked) {
-						ShowBalloonTip("Screenshot uploaded", "Screenshot copied to clipboard");
+						ShowBalloonTip(String.Format("{0} uploaded", typeOfShot), "Screenshot copied to clipboard");
 					} else {
-						ShowBalloonTip("Screenshot captured", "Screenshot copied to clipboard");
+						ShowBalloonTip(String.Format("{0} captured", typeOfShot), "Screenshot copied to clipboard");
 					}
 				}
 			} catch (Exception ex) {
