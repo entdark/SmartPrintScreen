@@ -1,8 +1,0 @@
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\bin\Release\SmartPrintScreen.exe.config
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\bin\Release\SmartPrintScreen.exe
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\bin\Release\SmartPrintScreen.pdb
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\obj\Release\SmartPrintScreen.FormMain.resources
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\obj\Release\SmartPrintScreen.Properties.Resources.resources
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\obj\Release\SmartPrintScreen.csproj.GenerateResource.Cache
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\obj\Release\SmartPrintScreen.exe
-E:\entdark\Programming\C#\Programs\SmartPrintScreen\SmartPrintScreen\obj\Release\SmartPrintScreen.pdb
