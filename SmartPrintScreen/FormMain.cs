@@ -241,6 +241,11 @@ namespace SmartPrintScreen {
 			notifyIconTray.BalloonTipText = text;
 			notifyIconTray.ShowBalloonTip(timeout);
 		}
+		
+		void notifyIconTray_BalloonTipClicked(object sender, System.EventArgs e) {
+			if (Clipboard.ContainsText())
+				System.Diagnostics.Process.Start(Clipboard.GetText());
+		}
 
 		//based on http://pc-tips.net/imgur-api-vb-net/
 		private async Task<string> GetUploadedShotURL(Bitmap image) {

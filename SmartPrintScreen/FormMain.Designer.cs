@@ -147,6 +147,7 @@
 			this.notifyIconTray.Text = "SmartPrintScreen";
 			this.notifyIconTray.Visible = true;
 			this.notifyIconTray.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconTray_MouseClick);
+			this.notifyIconTray.BalloonTipClicked += new System.EventHandler(this.notifyIconTray_BalloonTipClicked);
 			// 
 			// contextMenuStripTray
 			// 
