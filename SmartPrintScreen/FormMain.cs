@@ -111,6 +111,15 @@ namespace SmartPrintScreen {
 		private async Task CaptureWindow(object sender, KeyPressedEventArgs e) {
 			RECT focusedWindow;
 			GetWindowRect(GetForegroundWindow(), out focusedWindow);
+			//fullscreen windows have out of screen borders and the window screenshot can have white borders around, so we have to clamp
+			if (focusedWindow.Left < 0)
+				focusedWindow.Left = 0;
+			if (focusedWindow.Top < 0)
+				focusedWindow.Top = 0;
+			if (focusedWindow.Right > Screen.PrimaryScreen.Bounds.Width)
+				focusedWindow.Right = Screen.PrimaryScreen.Bounds.Width;
+			if (focusedWindow.Bottom > Screen.PrimaryScreen.Bounds.Height)
+				focusedWindow.Bottom = Screen.PrimaryScreen.Bounds.Height;
 			Rectangle r = new Rectangle(focusedWindow.Left, focusedWindow.Top, focusedWindow.Right-focusedWindow.Left, focusedWindow.Bottom-focusedWindow.Top);
 			await CaptureShot(r.Location, r.Size, "Window screenshot");
 		}
