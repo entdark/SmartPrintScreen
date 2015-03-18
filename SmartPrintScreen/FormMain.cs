@@ -194,9 +194,12 @@ namespace SmartPrintScreen {
 			}
 		}
 		private void fMouseUp_Click(object sender, MouseEventArgs e) {
-			if (e.Button == MouseButtons.Left) {
+			if (cutBorder[0] == e.Location) {
+				cancelCapture = true;
 				capturingCut = false;
+			} else if (e.Button == MouseButtons.Left) {
 				CutUpdate();
+				capturingCut = false;
 			}
 		}
 		
