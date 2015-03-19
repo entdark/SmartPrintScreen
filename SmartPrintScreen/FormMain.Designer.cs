@@ -45,6 +45,7 @@
 			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBoxUpload = new System.Windows.Forms.CheckBox();
+			this.checkBoxSaveURLsList = new System.Windows.Forms.CheckBox();
 			this.checkBoxHideOnStartup = new System.Windows.Forms.CheckBox();
 			this.groupBoxModifiers.SuspendLayout();
 			this.groupBoxClipboard.SuspendLayout();
@@ -244,6 +245,18 @@
 			this.checkBoxUpload.Text = "Upload shots";
 			this.checkBoxUpload.UseVisualStyleBackColor = true;
 			// 
+			// checkBoxSaveURLsList
+			// 
+			this.checkBoxSaveURLsList.AutoSize = true;
+			this.checkBoxSaveURLsList.Checked = true;
+			this.checkBoxSaveURLsList.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.checkBoxSaveURLsList.Location = new System.Drawing.Point(213, 100);
+			this.checkBoxSaveURLsList.Name = "checkBoxSaveURLsList";
+			this.checkBoxSaveURLsList.Size = new System.Drawing.Size(96, 17);
+			this.checkBoxSaveURLsList.TabIndex = 9;
+			this.checkBoxSaveURLsList.Text = "Save URLs list";
+			this.checkBoxSaveURLsList.UseVisualStyleBackColor = true;
+			// 
 			// checkBoxHideOnStartup
 			// 
 			this.checkBoxHideOnStartup.AutoSize = true;
@@ -261,6 +274,7 @@
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(321, 142);
 			this.Controls.Add(this.checkBoxHideOnStartup);
+			this.Controls.Add(this.checkBoxSaveURLsList);
 			this.Controls.Add(this.checkBoxUpload);
 			this.Controls.Add(this.listBoxShotURLs);
 			this.Controls.Add(this.checkBoxNotifications);
@@ -311,6 +325,7 @@
 		private System.Windows.Forms.ToolStripMenuItem clearListToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem openSmartPrintScreenToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.CheckBox checkBoxSaveURLsList;
 		private System.Windows.Forms.CheckBox checkBoxHideOnStartup;
 	}
 }

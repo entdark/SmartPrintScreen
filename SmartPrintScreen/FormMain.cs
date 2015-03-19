@@ -4,14 +4,29 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
+using IniParser;
+using IniParser.Model;
 
 namespace SmartPrintScreen {
 	public partial class FormMain : Form {
+		const string programName = "SmartPrintScreen";
+		readonly string iniPath;
 		public FormMain() {
 			InitializeComponent();
 			this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
+
 			hookPrintScreen.KeyPressed += new EventHandler<SmartPrintScreen.KeyPressedEventArgs>(CaptureMain);
 			hookPrintScreen.HookedKeys.Add(captureKey);
+
+			iniPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), programName);
+
+			if (File.Exists(Path.Combine(iniPath, programName + ".ini"))) {
+				try {
+					LoadIniData(Path.Combine(iniPath, programName + ".ini"));
+				} catch (Exception ex) {
+					MessageBox.Show(ex.Message);
+				}
+			}
 			if (checkBoxHideOnStartup.Checked) {
 				this.WindowState = FormWindowState.Minimized;
 			}
@@ -23,6 +38,87 @@ namespace SmartPrintScreen {
 			}
 		}
 		
+		private void LoadIniData(string path) {
+			FileIniDataParser ini = new FileIniDataParser();
+			IniData data = ini.ReadFile(path);
+			//General
+			if (data["General"]["Clipboard"].ToLower() == "screenshot") {
+				radioButtonClipboardScreenshot.Checked = true;
+			} else {
+				radioButtonClipboardURL.Checked = true;
+			}
+			modifierKeys = SmartPrintScreen.ModifierKeys.None;
+			if (checkBoxModifierShift.Checked = data["General"]["Modifiers"].ToLower().Contains("shift")) {
+				modifierKeys |= SmartPrintScreen.ModifierKeys.Shift;
+			}
+			if (checkBoxModifierCtrl.Checked = data["General"]["Modifiers"].ToLower().Contains("ctrl")) {
+				modifierKeys |= SmartPrintScreen.ModifierKeys.Ctrl;
+			}
+			if (checkBoxModifierWin.Checked = data["General"]["Modifiers"].ToLower().Contains("win")) {
+				modifierKeys |= SmartPrintScreen.ModifierKeys.Win;
+			}
+			checkBoxUpload.Checked = bool.Parse(data["General"]["Upload"]);
+			checkBoxNotifications.Checked = bool.Parse(data["General"]["Notifications"]);
+			checkBoxHideOnStartup.Checked = bool.Parse(data["General"]["HideOnStartup"]);
+			checkBoxSaveURLsList.Checked = bool.Parse(data["General"]["SaveURLsList"]);
+			//Screenshot URLs
+			int count = int.Parse(data["ScreenshotURLs"]["Count"]);
+			if (checkBoxSaveURLsList.Checked) {
+				if (count > 0) {
+					for (int i = count-1; i >= 0; i--) {
+						string url = data["ScreenshotURLs"]["URL" + i.ToString()];
+						//TODO: add more conditions to check URLs
+						if (url.Contains("http"))
+							InsertShotURLtoListBox(url);
+					}
+				}
+			}
+		}
+
+		private void SaveIniData(string path) {
+			FileIniDataParser ini = new FileIniDataParser();
+			IniData data = new IniData();
+			//General
+			data.Sections.AddSection("General");
+			data["General"].AddKey("Clipboard", radioButtonClipboardScreenshot.Checked ? "Screenshot" : "URL");
+			string modifiers = "";
+			if ((modifierKeys & SmartPrintScreen.ModifierKeys.Win) != 0) {
+				modifiers = "Win";
+				if (modifierKeys == SmartPrintScreen.ModifierKeys.Win)
+					goto skipRestModifiers;
+				else
+					modifiers += "+";
+			}
+			if ((modifierKeys & SmartPrintScreen.ModifierKeys.Ctrl) != 0) {
+				modifiers += "Ctrl";
+				if (modifierKeys == SmartPrintScreen.ModifierKeys.Ctrl)
+					goto skipRestModifiers;
+				else
+					modifiers += "+";
+			}
+			if ((modifierKeys & SmartPrintScreen.ModifierKeys.Shift) != 0)
+				modifiers += "Shift";
+skipRestModifiers:
+			data["General"].AddKey("Modifiers", modifiers);
+			data["General"].AddKey("Upload", checkBoxUpload.Checked ? "True" : "False");
+			data["General"].AddKey("Notifications", checkBoxNotifications.Checked ? "True" : "False");
+			data["General"].AddKey("HideOnStartup", checkBoxHideOnStartup.Checked ? "True" : "False");
+			data["General"].AddKey("SaveURLsList", checkBoxSaveURLsList.Checked ? "True" : "False");
+			//Screenshot URLs
+			data.Sections.AddSection("ScreenshotURLs");
+			int count = listBoxShotURLs.Items.Count;
+			data["ScreenshotURLs"].AddKey("Count", count.ToString());
+			if (checkBoxSaveURLsList.Checked) {
+				if (count > 0) {
+					for (int i = 0; i < count; i++) {
+						data["ScreenshotURLs"].AddKey("URL" + i.ToString(), listBoxShotURLs.Items[i].ToString());
+					}
+				}
+			}
+			Directory.CreateDirectory(path);
+			ini.WriteFile(Path.Combine(path, programName + ".ini"), data);
+		}
+
 		private bool closingFromTray = false;
 		private void FormMain_Closing(object sender, FormClosingEventArgs e) {
 			if (closingFromTray) {
@@ -30,6 +126,12 @@ namespace SmartPrintScreen {
 			} else if (e.CloseReason == CloseReason.UserClosing) {
 				e.Cancel = true;
 				this.Hide();
+				return;
+			}
+			try {
+				SaveIniData(iniPath);
+			} catch (Exception ex) {
+				MessageBox.Show(ex.Message);
 			}
 		}
 
