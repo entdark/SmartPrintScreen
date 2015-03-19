@@ -12,11 +12,15 @@ namespace SmartPrintScreen {
 			this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
 			hookPrintScreen.KeyPressed += new EventHandler<SmartPrintScreen.KeyPressedEventArgs>(CaptureMain);
 			hookPrintScreen.HookedKeys.Add(captureKey);
-			this.Hide();
+			if (checkBoxHideOnStartup.Checked) {
+				this.WindowState = FormWindowState.Minimized;
+			}
 		}
 		
 		private void FormMain_Load(object sender, EventArgs e) {
-			this.Hide();
+			if (checkBoxHideOnStartup.Checked) {
+				this.Hide();
+			}
 		}
 		
 		private bool closingFromTray = false;

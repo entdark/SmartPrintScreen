@@ -45,6 +45,7 @@
 			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBoxUpload = new System.Windows.Forms.CheckBox();
+			this.checkBoxHideOnStartup = new System.Windows.Forms.CheckBox();
 			this.groupBoxModifiers.SuspendLayout();
 			this.groupBoxClipboard.SuspendLayout();
 			this.contextMenuStripTray.SuspendLayout();
@@ -146,8 +147,8 @@
 			this.notifyIconTray.Icon = new System.Drawing.Icon((System.Drawing.Icon)(resources.GetObject("notifyIconTray.Icon")), 16, 16);
 			this.notifyIconTray.Text = "SmartPrintScreen";
 			this.notifyIconTray.Visible = true;
-			this.notifyIconTray.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconTray_MouseClick);
 			this.notifyIconTray.BalloonTipClicked += new System.EventHandler(this.notifyIconTray_BalloonTipClicked);
+			this.notifyIconTray.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIconTray_MouseClick);
 			// 
 			// contextMenuStripTray
 			// 
@@ -156,7 +157,7 @@
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
 			this.contextMenuStripTray.Name = "contextMenuStripTray";
-			this.contextMenuStripTray.Size = new System.Drawing.Size(198, 76);
+			this.contextMenuStripTray.Size = new System.Drawing.Size(198, 54);
 			// 
 			// openSmartPrintScreenToolStripMenuItem
 			// 
@@ -182,7 +183,7 @@
 			this.checkBoxNotifications.AutoSize = true;
 			this.checkBoxNotifications.Checked = true;
 			this.checkBoxNotifications.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxNotifications.Location = new System.Drawing.Point(185, 116);
+			this.checkBoxNotifications.Location = new System.Drawing.Point(119, 116);
 			this.checkBoxNotifications.Name = "checkBoxNotifications";
 			this.checkBoxNotifications.Size = new System.Drawing.Size(84, 17);
 			this.checkBoxNotifications.TabIndex = 6;
@@ -195,7 +196,7 @@
 			this.listBoxShotURLs.FormattingEnabled = true;
 			this.listBoxShotURLs.Location = new System.Drawing.Point(119, 25);
 			this.listBoxShotURLs.Name = "listBoxShotURLs";
-			this.listBoxShotURLs.Size = new System.Drawing.Size(192, 82);
+			this.listBoxShotURLs.Size = new System.Drawing.Size(192, 69);
 			this.listBoxShotURLs.TabIndex = 7;
 			this.listBoxShotURLs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxShotURLs_KeyDown);
 			this.listBoxShotURLs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxShotURLs_MouseDoubleClick);
@@ -236,12 +237,22 @@
 			this.checkBoxUpload.AutoSize = true;
 			this.checkBoxUpload.Checked = true;
 			this.checkBoxUpload.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxUpload.Location = new System.Drawing.Point(119, 116);
+			this.checkBoxUpload.Location = new System.Drawing.Point(119, 100);
 			this.checkBoxUpload.Name = "checkBoxUpload";
-			this.checkBoxUpload.Size = new System.Drawing.Size(60, 17);
+			this.checkBoxUpload.Size = new System.Drawing.Size(88, 17);
 			this.checkBoxUpload.TabIndex = 8;
-			this.checkBoxUpload.Text = "Upload";
+			this.checkBoxUpload.Text = "Upload shots";
 			this.checkBoxUpload.UseVisualStyleBackColor = true;
+			// 
+			// checkBoxHideOnStartup
+			// 
+			this.checkBoxHideOnStartup.AutoSize = true;
+			this.checkBoxHideOnStartup.Location = new System.Drawing.Point(213, 116);
+			this.checkBoxHideOnStartup.Name = "checkBoxHideOnStartup";
+			this.checkBoxHideOnStartup.Size = new System.Drawing.Size(98, 17);
+			this.checkBoxHideOnStartup.TabIndex = 10;
+			this.checkBoxHideOnStartup.Text = "Hide on startup";
+			this.checkBoxHideOnStartup.UseVisualStyleBackColor = true;
 			// 
 			// FormMain
 			// 
@@ -249,6 +260,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
 			this.ClientSize = new System.Drawing.Size(321, 142);
+			this.Controls.Add(this.checkBoxHideOnStartup);
 			this.Controls.Add(this.checkBoxUpload);
 			this.Controls.Add(this.listBoxShotURLs);
 			this.Controls.Add(this.checkBoxNotifications);
@@ -299,6 +311,7 @@
 		private System.Windows.Forms.ToolStripMenuItem clearListToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem openSmartPrintScreenToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.CheckBox checkBoxHideOnStartup;
 	}
 }
 
