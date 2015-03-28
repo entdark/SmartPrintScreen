@@ -129,10 +129,7 @@ namespace SmartPrintScreen {
 					string url = "";
 				
 					// copy Image to clipboard
-					using (MemoryStream ms = new MemoryStream()) {
-						screenShot.Save(ms, ImageFormat.Bmp);
-						Clipboard.SetImage(Image.FromStream(ms));
-					}
+					Clipboard.SetImage((Image)screenShot);
 				
 					if (checkBoxUpload.Checked) {
 						//since uploading takes some time let's just keep Screenshot in the clipboard until we upload
