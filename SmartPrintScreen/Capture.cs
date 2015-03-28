@@ -185,7 +185,7 @@ namespace SmartPrintScreen {
 					w.Headers.Add("Authorization", "Client-ID " + ClientId);
 					System.Collections.Specialized.NameValueCollection Keys = new System.Collections.Specialized.NameValueCollection();
 					using (MemoryStream ms = new MemoryStream()) {
-						image.Save(ms, ImageFormat.Bmp);
+						image.Save(ms, ImageFormat.Png);
 						byte[] byteStream = ms.ToArray();
 						Keys.Add("image", Convert.ToBase64String(byteStream));
 					}
