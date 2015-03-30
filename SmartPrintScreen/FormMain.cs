@@ -9,7 +9,7 @@ using IniParser.Model;
 
 namespace SmartPrintScreen {
 	public partial class FormMain : Form {
-		const string programName = "SmartPrintScreen";
+		public const string programName = "SmartPrintScreen";
 		readonly string iniPath;
 		public FormMain() {
 			InitializeComponent();

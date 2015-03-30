@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Threading;
+using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SmartPrintScreen {
 	static class Program {
@@ -13,10 +11,18 @@ namespace SmartPrintScreen {
 		/// </summary>
 		[STAThread]
 		static void Main() {
+			string progGuid = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), false).GetValue(0)).Value.ToString();
 			try {
-				Application.EnableVisualStyles();
-				Application.SetCompatibleTextRenderingDefault(false);
-				Application.Run(new FormMain());
+				using (Mutex m = new Mutex(false, "Global\\" + progGuid)) {
+					if (!m.WaitOne(0, false)) {
+						MessageBox.Show(FormMain.programName + " already running");
+						return;
+					}
+					GC.Collect();
+					Application.EnableVisualStyles();
+					Application.SetCompatibleTextRenderingDefault(false);
+					Application.Run(new FormMain());
+				}
 			} catch (Exception ex) {
 				MessageBox.Show(ex.Message);
 			}
