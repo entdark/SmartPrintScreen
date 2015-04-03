@@ -93,6 +93,9 @@
     <Content Include="SmartPrintScreen.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)ILMerge\ILMerge.exe" /targetplatform:"v4, C:\Windows\Microsoft.NET\Framework\v4.0.30319" /target:winexe /out:"$(TargetDir)$(TargetName)Portable.exe" "$(TargetDir)$(TargetName).exe" "$(TargetDir)*.dll" /allowDup /wildcards</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
