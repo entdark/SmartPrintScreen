@@ -23,8 +23,8 @@ namespace SmartPrintScreen {
 					Application.SetCompatibleTextRenderingDefault(false);
 					Application.Run(new FormMain());
 				}
-			} catch (Exception ex) {
-				MessageBox.Show(ex.Message);
+			} catch (Exception e) {
+				MessageBox.Show(e.Message);
 			}
 		}
 	}

@@ -56,7 +56,7 @@ namespace SmartPrintScreen {
 			}
 		}
 		
-		private bool capturingCut = false;
+		private static bool capturingCut = false;
 		private async void CaptureMain(object sender, KeyPressedEventArgs e) {
 			if (e.Modifier == SmartPrintScreen.ModifierKeys.Alt) {
 				await CaptureWindow(sender, e);
@@ -86,7 +86,7 @@ namespace SmartPrintScreen {
 			await CaptureShot(r.Location, r.Size, "Window screenshot");
 		}
 		
-		private bool cancelCapture = false;
+		private static bool cancelCapture = false;
 		private async Task CaptureCut(object sender, KeyPressedEventArgs e) {
 			using (Form f = new Form()) {
 				f.StartPosition = FormStartPosition.Manual;
@@ -151,8 +151,8 @@ namespace SmartPrintScreen {
 						ShowBalloonTip(String.Format("{0} captured", typeOfShot), "Screenshot copied to clipboard");
 					}
 				}
-			} catch (Exception ex) {
-				MessageBox.Show(ex.Message);
+			} catch (Exception e) {
+				MessageBox.Show(e.Message);
 			}
 		}
 		
@@ -196,8 +196,8 @@ namespace SmartPrintScreen {
 					string url = match.ToString().Replace("link\":\"", "").Replace("\"", "").Replace("\\/", "/");
 					return url;
 				}
-			} catch (Exception ex) {
-				MessageBox.Show("Failed to upload to imgur.com\n" + ex.Message);
+			} catch (Exception e) {
+				MessageBox.Show("Failed to upload to imgur.com\n" + e.Message);
 				return "failed";
 			}
 			});

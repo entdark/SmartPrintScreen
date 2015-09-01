@@ -23,8 +23,8 @@ namespace SmartPrintScreen {
 			if (File.Exists(Path.Combine(iniPath, programName + ".ini"))) {
 				try {
 					LoadIniData(Path.Combine(iniPath, programName + ".ini"));
-				} catch (Exception ex) {
-					MessageBox.Show(ex.Message);
+				} catch (Exception e) {
+					MessageBox.Show(e.Message);
 				}
 			}
 			if (checkBoxHideOnStartup.Checked) {
@@ -120,18 +120,18 @@ skipRestModifiers:
 		}
 
 		private bool closingFromTray = false;
-		private void FormMain_Closing(object sender, FormClosingEventArgs e) {
+		private void FormMain_Closing(object sender, FormClosingEventArgs ev) {
 			if (closingFromTray) {
 				// do nothing so we just closing
-			} else if (e.CloseReason == CloseReason.UserClosing) {
-				e.Cancel = true;
+			} else if (ev.CloseReason == CloseReason.UserClosing) {
+				ev.Cancel = true;
 				this.Hide();
 				return;
 			}
 			try {
 				SaveIniData(iniPath);
-			} catch (Exception ex) {
-				MessageBox.Show(ex.Message);
+			} catch (Exception e) {
+				MessageBox.Show(e.Message);
 			}
 		}
 
@@ -150,11 +150,10 @@ skipRestModifiers:
 		private void fMouseUp_Click(object sender, MouseEventArgs e) {
 			if (cutBorder[0] == e.Location) {
 				cancelCapture = true;
-				capturingCut = false;
 			} else if (e.Button == MouseButtons.Left) {
 				CutUpdate();
-				capturingCut = false;
 			}
+			capturingCut = false;
 		}
 		
 		private void fMouseMove_MouseClick(object sender, MouseEventArgs e) {
