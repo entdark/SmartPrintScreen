@@ -43,6 +43,7 @@
 			this.contextMenuStripShotURLs = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.openInBrowserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.clearListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBoxUpload = new System.Windows.Forms.CheckBox();
 			this.checkBoxSaveURLsList = new System.Windows.Forms.CheckBox();
@@ -208,9 +209,10 @@
 			this.contextMenuStripShotURLs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openInBrowserToolStripMenuItem,
             this.copyToolStripMenuItem,
+            this.deleteToolStripMenuItem,
             this.clearListToolStripMenuItem});
 			this.contextMenuStripShotURLs.Name = "contextMenuStripShotURLs";
-			this.contextMenuStripShotURLs.Size = new System.Drawing.Size(162, 70);
+			this.contextMenuStripShotURLs.Size = new System.Drawing.Size(162, 92);
 			// 
 			// openInBrowserToolStripMenuItem
 			// 
@@ -225,6 +227,13 @@
 			this.copyToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
 			this.copyToolStripMenuItem.Text = "Copy";
 			this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+			// 
+			// deleteToolStripMenuItem
+			// 
+			this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+			this.deleteToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+			this.deleteToolStripMenuItem.Text = "Delete";
+			this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
 			// 
 			// clearListToolStripMenuItem
 			// 
@@ -322,6 +331,7 @@
 		private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
 		private System.Windows.Forms.CheckBox checkBoxUpload;
 		private System.Windows.Forms.ToolStripMenuItem openInBrowserToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem clearListToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem openSmartPrintScreenToolStripMenuItem;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

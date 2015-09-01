@@ -272,9 +272,11 @@ skipRestModifiers:
 				if (listBoxShotURLs.SelectedIndex < 0) {
 					openInBrowserToolStripMenuItem.Enabled = false;
 					copyToolStripMenuItem.Enabled = false;
+					deleteToolStripMenuItem.Enabled = false;
 				} else {
 					openInBrowserToolStripMenuItem.Enabled = true;
 					copyToolStripMenuItem.Enabled = true;
+					deleteToolStripMenuItem.Enabled = true;
 				}
 				contextMenuStripShotURLs.Show(Cursor.Position);
 			}
@@ -294,6 +296,12 @@ skipRestModifiers:
 
 		private void clearListToolStripMenuItem_Click(object sender, EventArgs e) {
 			listBoxShotURLs.Items.Clear();
+		}
+
+		private void deleteToolStripMenuItem_Click(object sender, EventArgs e) {
+			int i = listBoxShotURLs.SelectedIndex;
+			if (i >= 0 && i < listBoxShotURLs.Items.Count)
+				listBoxShotURLs.Items.RemoveAt(i);
 		}
 
 		private void listBoxShotURLs_KeyDown(object sender, KeyEventArgs e) {
