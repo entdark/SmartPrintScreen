@@ -132,10 +132,14 @@ namespace SmartPrintScreen {
 					Clipboard.SetImage((Image)screenShot);
 				
 					if (checkBoxUpload.Checked) {
+						if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) {
+							screenShot.Dispose();
+							return;
+						}
 						//since uploading takes some time let's just keep Screenshot in the clipboard until we upload
 						ShowBalloonTip("Uploading to imgur.com", String.Format("{0} copied to clipboard", typeOfShot));
 						url = await GetUploadedShotURL(screenShot);
-						if (url == "failed") {
+						if (url == null) {
 							screenShot.Dispose();
 							return;
 						}
@@ -198,7 +202,7 @@ namespace SmartPrintScreen {
 				}
 			} catch (Exception e) {
 				MessageBox.Show("Failed to upload to imgur.com\n" + e.Message);
-				return "failed";
+				return null;
 			}
 			});
 		}
