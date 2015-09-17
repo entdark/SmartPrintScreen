@@ -209,6 +209,7 @@ namespace SmartPrintScreen {
 
 		private void InsertShotURLtoListBox(string url) {
 			listBoxShotURLs.Items.Insert(0, url);
+			SaveIniData(iniPath);
 		}
 		
 		private void OpenURLinBrowser() {

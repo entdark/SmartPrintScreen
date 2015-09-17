@@ -295,12 +295,15 @@ skipRestModifiers:
 
 		private void clearListToolStripMenuItem_Click(object sender, EventArgs e) {
 			listBoxShotURLs.Items.Clear();
+			SaveIniData(iniPath);
 		}
 
 		private void deleteToolStripMenuItem_Click(object sender, EventArgs e) {
 			int i = listBoxShotURLs.SelectedIndex;
-			if (i >= 0 && i < listBoxShotURLs.Items.Count)
+			if (i >= 0 && i < listBoxShotURLs.Items.Count) {
 				listBoxShotURLs.Items.RemoveAt(i);
+				SaveIniData(iniPath);
+			}
 		}
 
 		private void listBoxShotURLs_KeyDown(object sender, KeyEventArgs e) {
@@ -312,6 +315,10 @@ skipRestModifiers:
 
 		private void openSmartPrintScreenToolStripMenuItem_Click(object sender, EventArgs e) {
 			this.Show();
+		}
+
+		private void saveOnOptionChanged(object sender, EventArgs e) {
+			SaveIniData(iniPath);
 		}
 	}
 }

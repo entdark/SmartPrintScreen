@@ -87,6 +87,7 @@
 			this.checkBoxModifierWin.Text = "Win";
 			this.checkBoxModifierWin.UseVisualStyleBackColor = true;
 			this.checkBoxModifierWin.CheckedChanged += new System.EventHandler(this.checkBoxModifierWin_CheckedChanged);
+			this.checkBoxModifierWin.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// checkBoxModifierShift
 			// 
@@ -98,6 +99,7 @@
 			this.checkBoxModifierShift.Text = "Shift";
 			this.checkBoxModifierShift.UseVisualStyleBackColor = true;
 			this.checkBoxModifierShift.CheckedChanged += new System.EventHandler(this.checkBoxModifierShift_CheckedChanged);
+			this.checkBoxModifierShift.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// checkBoxModifierCtrl
 			// 
@@ -109,6 +111,7 @@
 			this.checkBoxModifierCtrl.Text = "Ctrl";
 			this.checkBoxModifierCtrl.UseVisualStyleBackColor = true;
 			this.checkBoxModifierCtrl.CheckedChanged += new System.EventHandler(this.checkBoxModifierCtrl_CheckedChanged);
+			this.checkBoxModifierCtrl.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// groupBoxClipboard
 			// 
@@ -132,6 +135,7 @@
 			this.radioButtonClipboardURL.TabStop = true;
 			this.radioButtonClipboardURL.Text = "URL";
 			this.radioButtonClipboardURL.UseVisualStyleBackColor = true;
+			this.radioButtonClipboardURL.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// radioButtonClipboardScreenshot
 			// 
@@ -142,6 +146,7 @@
 			this.radioButtonClipboardScreenshot.TabIndex = 0;
 			this.radioButtonClipboardScreenshot.Text = "Screenshot";
 			this.radioButtonClipboardScreenshot.UseVisualStyleBackColor = true;
+			this.radioButtonClipboardScreenshot.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// notifyIconTray
 			// 
@@ -191,6 +196,7 @@
 			this.checkBoxNotifications.TabIndex = 6;
 			this.checkBoxNotifications.Text = "Notifications";
 			this.checkBoxNotifications.UseVisualStyleBackColor = true;
+			this.checkBoxNotifications.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// listBoxShotURLs
 			// 
@@ -253,6 +259,7 @@
 			this.checkBoxUpload.TabIndex = 8;
 			this.checkBoxUpload.Text = "Upload shots";
 			this.checkBoxUpload.UseVisualStyleBackColor = true;
+			this.checkBoxUpload.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// checkBoxSaveURLsList
 			// 
@@ -265,6 +272,7 @@
 			this.checkBoxSaveURLsList.TabIndex = 9;
 			this.checkBoxSaveURLsList.Text = "Save URLs list";
 			this.checkBoxSaveURLsList.UseVisualStyleBackColor = true;
+			this.checkBoxSaveURLsList.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// checkBoxHideOnStartup
 			// 
@@ -275,6 +283,7 @@
 			this.checkBoxHideOnStartup.TabIndex = 10;
 			this.checkBoxHideOnStartup.Text = "Hide on startup";
 			this.checkBoxHideOnStartup.UseVisualStyleBackColor = true;
+			this.checkBoxHideOnStartup.CheckedChanged += new System.EventHandler(this.saveOnOptionChanged);
 			// 
 			// FormMain
 			// 
