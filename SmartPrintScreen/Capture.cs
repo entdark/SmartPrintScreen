@@ -122,9 +122,9 @@ namespace SmartPrintScreen {
 		
 		private async Task CaptureShot(Point location, Size size, string typeOfShot = "Screenshot") {
 			try {
-				using (Bitmap screenShot = new Bitmap(size.Width, size.Height)) {
+				using (Bitmap screenShot = new Bitmap(size.Width, size.Height, PixelFormat.Format24bppRgb)) {
 					using (Graphics g = Graphics.FromImage(screenShot)) {
-						g.CopyFromScreen(location, new Point(0, 0), size);
+						g.CopyFromScreen(location, new Point(0, 0), size, CopyPixelOperation.SourceCopy);
 					}
 					string url = "";
 				
