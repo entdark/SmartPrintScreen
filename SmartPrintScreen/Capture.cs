@@ -133,19 +133,16 @@ namespace SmartPrintScreen {
 				
 					if (checkBoxUpload.Checked) {
 						if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) {
-							screenShot.Dispose();
 							return;
 						}
 						//since uploading takes some time let's just keep Screenshot in the clipboard until we upload
 						ShowBalloonTip("Uploading to imgur.com", String.Format("{0} copied to clipboard", typeOfShot));
 						url = await GetUploadedShotURL(screenShot);
 						if (url == null) {
-							screenShot.Dispose();
 							return;
 						}
 						InsertShotURLtoListBox(url);
 					}
-					screenShot.Dispose();
 					if (radioButtonClipboardURL.Checked && checkBoxUpload.Checked) {
 						Clipboard.SetText(url);
 						ShowBalloonTip(String.Format("{0} uploaded", typeOfShot), String.Format("{0} copied to clipboard", url));
